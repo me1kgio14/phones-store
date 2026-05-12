@@ -5,9 +5,10 @@ const phonesRouter = require('./Router/phones.router');
 const globalErrorHandler = require('./Controllers/error.controller');
 const mongoose = require('mongoose');
 const authRouter = require('./Router/auth.router');
-
+const cookieParser = require('cookie-parser');
 const app= express();
 app.use(express.json());
+app.use(cookieParser());
 app.use(morgan('dev'));
 app.use("/api/phones", phonesRouter)
 app.use("/api/auth", authRouter)

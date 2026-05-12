@@ -257,8 +257,21 @@ const login = catchAsync(async(req, res, next) => {
 })
 
 
+const logout = catchAsync(async(req, res, next) => {
+    res.clearCookie("lg", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite:process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
+        path: '/',
+    });
+    res.status(200).json("Logged out successfully");
+});
+
+
+
 module.exports = {
     signUp,
     verifyEmail,
-    login
+    login,
+    logout
 }
